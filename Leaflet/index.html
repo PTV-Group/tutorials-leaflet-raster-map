@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <title>PTV Raster Map Leaflet Tutorial</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
+    <style>
+        body,
+        html {
+            border: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script type="text/javascript" src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+<script type="text/javascript" src="./headerTileLayer.js"></script>
+<script type="text/javascript">
+
+  const tileURL = "https://api.myptv.com/rastermaps/v1/image-tiles/{z}/{x}/{y}?size={tileSize}";
+  const api_key = "YOUR_API_KEY"
+
+  // Karlsruhe
+  const coordinate = L.latLng(49, 8.4);
+
+  const initializeMap = () => {
+    const map = new L.Map("map", {
+      center: coordinate,
+      zoom: 13,
+      zoomControl: false
+    });
+
+    L.control.zoom({
+      position: "bottomright"
+    }).addTo(map);
+
+    L.tileLayer(tileURL, {
+      attribution: "&copy;2022, PTV Group, HERE",
+    },
+    [
+      { header: "apiKey", value: api_key },
+    ]).addTo(map);
+  };
+
+  window.onload = initializeMap;
+</script>
+</body>
+
+</html>
