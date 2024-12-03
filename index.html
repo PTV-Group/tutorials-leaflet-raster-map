@@ -43,7 +43,7 @@
     }).addTo(map);
 
     L.tileLayer(tileURL, {
-      attribution: "&copy;2022, PTV Logistics, HERE",
+      attribution: "&copy;" + new Date().getFullYear() + " PTV Logistics, HERE",
     },
     [
       { header: "apiKey", value: api_key },
